@@ -182,22 +182,25 @@ public class AudioHandler extends AudioEventAdapter implements AudioSendHandler
                 queue.addAt(0, clone);
         }
         
-        if(queue.isEmpty())
+        if(endReason.mayStartNext)
         {
-            if(!playFromDefault())
+            if(queue.isEmpty())
             {
-                manager.getBot().getNowplayingHandler().onTrackUpdate(null);
-                if(!manager.getBot().getConfig().getStay())
-                    manager.getBot().closeAudioConnection(guildId);
-                // unpause, in the case when the player was paused and the track has been skipped.
-                // this is to prevent the player being paused next time it's being used.
-                player.setPaused(false);
+                if(!playFromDefault())
+                {
+                    manager.getBot().getNowplayingHandler().onTrackUpdate(null);
+                    if(!manager.getBot().getConfig().getStay())
+                        manager.getBot().closeAudioConnection(guildId);
+                    // unpause, in the case when the player was paused and the track has been skipped.
+                    // this is to prevent the player being paused next time it's being used.
+                    player.setPaused(false);
+                }
             }
-        }
-        else
-        {
-            QueuedTrack qt = queue.pull();
-            player.playTrack(qt.getTrack());
+            else
+            {
+                QueuedTrack qt = queue.pull();
+                player.playTrack(qt.getTrack());
+            }
         }
     }
 

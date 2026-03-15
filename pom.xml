@@ -12,11 +12,7 @@
             <name>m2-chew</name>
             <url>https://m2.chew.pro/releases</url>
         </repository>
-        <repository>
-            <id>central</id>
-            <name>bintray</name>
-            <url>https://jcenter.bintray.com</url>
-        </repository>
+
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
@@ -35,6 +31,20 @@
             <name>Lavalink Repository</name>
             <url>https://maven.lavalink.dev/releases</url>
         </repository>
+        <repository>
+            <id>arbjergDevSnapshots</id>
+            <name>Lavalink Snapshots</name>
+            <url>https://maven.lavalink.dev/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>kyokobot</id>
+            <name>KyokoBot Repository</name>
+            <url>https://repository.kyokobot.moe/releases/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -42,26 +52,50 @@
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>5.6.1</version>
+            <version>6.3.2</version>
         </dependency>
         <dependency>
-            <groupId>pw.chew</groupId>
+            <groupId>com.github.Chew.JDA-Chewtils</groupId>
             <artifactId>jda-chewtils</artifactId>
-            <version>2.1</version>
+            <version>master-SNAPSHOT</version>
             <scope>compile</scope>
             <type>pom</type>
         </dependency>
         <dependency>
-            <groupId>pw.chew</groupId>
+            <groupId>com.github.Chew.JDA-Chewtils</groupId>
             <artifactId>jda-chewtils-command</artifactId>
-            <version>2.1</version>
+            <version>master-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>pw.chew</groupId>
+            <groupId>com.github.Chew.JDA-Chewtils</groupId>
             <artifactId>jda-chewtils-examples</artifactId>
-            <version>2.1</version>
+            <version>master-SNAPSHOT</version>
             <scope>compile</scope>
+        </dependency>
+
+        <!-- DAVE Protocol (Discord Voice E2E Encryption) -->
+        <dependency>
+            <groupId>moe.kyokobot.libdave</groupId>
+            <artifactId>adapter-jda</artifactId>
+            <version>0.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>moe.kyokobot.libdave</groupId>
+            <artifactId>impl-jni</artifactId>
+            <version>0.1.2</version>
+        </dependency>
+        <!-- Windows native -->
+        <dependency>
+            <groupId>moe.kyokobot.libdave</groupId>
+            <artifactId>natives-win-x86-64</artifactId>
+            <version>0.1.2</version>
+        </dependency>
+        <!-- Linux native (glibc / most distros) -->
+        <dependency>
+            <groupId>moe.kyokobot.libdave</groupId>
+            <artifactId>natives-linux-x86-64</artifactId>
+            <version>0.1.2</version>
         </dependency>
 
         <!-- Music Dependencies -->
@@ -123,7 +157,7 @@
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-shade-plugin</artifactId>
-            <version>1.5</version>
+            <version>3.6.0</version>
             <executions>
                 <execution>
                     <phase>package</phase>
@@ -162,7 +196,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 </project>

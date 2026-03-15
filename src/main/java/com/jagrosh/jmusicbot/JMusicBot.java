@@ -123,6 +123,8 @@ public class JMusicBot
                             ? OnlineStatus.INVISIBLE : OnlineStatus.DO_NOT_DISTURB)
                     .addEventListeners(client, waiter, new Listener(bot))
                     .setBulkDeleteSplittingEnabled(true)
+                    .setAudioModuleConfig(new net.dv8tion.jda.api.audio.AudioModuleConfig()
+                            .withDaveSessionFactory(new moe.kyokobot.libdave.jda.LDJDADaveSessionFactory(new moe.kyokobot.libdave.NativeDaveFactory())))
                     .build();
             bot.setJDA(jda);
 
